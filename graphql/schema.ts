@@ -1,5 +1,4 @@
 import { objectType, queryType, mutationType, makeSchema } from "@nexus/schema";
-import { nexusPrisma } from "nexus-plugin-prisma";
 import path from "path";
 
 const Query = queryType({
@@ -22,26 +21,20 @@ const Mutation = mutationType({
         return `${count} user(s) destroyed. Thanos will be proud.`;
       },
     });
-
-    t.crud.createOneUser();
-    t.crud.deleteOneUser();
-    t.crud.deleteManyUser();
-    t.crud.updateOneUser();
-    t.crud.updateManyUser();
   },
 });
 
 const User = objectType({
   name: "User",
   definition(t) {
-    t.model.id();
-    t.model.name();
+    t.string('id');
+    t.string('name');
   },
 });
 
 export const schema = makeSchema({
   types: [Query, User, Mutation],
-  plugins: [nexusPrisma({ experimentalCRUD: true })],
+  plugins: [],
   outputs: {
     typegen: path.join(process.cwd(), "generated", "nexus-typegen.ts"),
     schema: path.join(process.cwd(), "generated", "schema.graphql"),

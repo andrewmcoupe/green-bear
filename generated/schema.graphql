@@ -2,89 +2,15 @@
 ### Do not make changes to this file directly
 
 
-type AffectedRowsOutput {
-  count: Int!
-}
-
 type Mutation {
   bigRedButton: String
-  createOneUser(data: UserCreateInput!): User!
-  deleteManyUser(where: UserWhereInput): AffectedRowsOutput!
-  deleteOneUser(where: UserWhereUniqueInput!): User
-  updateManyUser(data: UserUpdateManyMutationInput!, where: UserWhereInput): AffectedRowsOutput!
-  updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-}
-
-input NestedStringFilter {
-  contains: String
-  endsWith: String
-  equals: String
-  gt: String
-  gte: String
-  in: [String!]
-  lt: String
-  lte: String
-  not: NestedStringFilter
-  notIn: [String!]
-  startsWith: String
 }
 
 type Query {
   allUsers: [User]
 }
 
-enum QueryMode {
-  default
-  insensitive
-}
-
-input StringFieldUpdateOperationsInput {
-  set: String
-}
-
-input StringFilter {
-  contains: String
-  endsWith: String
-  equals: String
-  gt: String
-  gte: String
-  in: [String!]
-  lt: String
-  lte: String
-  mode: QueryMode
-  not: NestedStringFilter
-  notIn: [String!]
-  startsWith: String
-}
-
 type User {
-  id: String!
-  name: String!
-}
-
-input UserCreateInput {
   id: String
-  name: String!
-}
-
-input UserUpdateInput {
-  id: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-}
-
-input UserUpdateManyMutationInput {
-  id: StringFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-}
-
-input UserWhereInput {
-  AND: [UserWhereInput!]
-  NOT: [UserWhereInput!]
-  OR: [UserWhereInput!]
-  id: StringFilter
-  name: StringFilter
-}
-
-input UserWhereUniqueInput {
-  id: String
+  name: String
 }
