@@ -3,14 +3,17 @@
 
 
 type Mutation {
-  bigRedButton: String
+  """Creates a user"""
+  createUser(email: String!, name: String!, phoneNumber: String): User!
 }
 
 type Query {
-  allUsers: [User]
+  user(id: String!): User!
 }
 
 type User {
-  id: String
-  name: String
+  email: String!
+  id: String!
+  name: String!
+  phoneNumber: String
 }
