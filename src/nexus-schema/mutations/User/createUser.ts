@@ -11,8 +11,8 @@ export const createUser = mutationField('createUser', {
   resolve: async (root, args, context) => {
     return context.prisma.user.create({
       data: {
-        name: args.name || '', // TODO: Figure out why the OR is required 🤷
-        email: args.email || '',
+        name: args.name,
+        email: args.email,
         phoneNumber: args.phoneNumber,
       },
     })

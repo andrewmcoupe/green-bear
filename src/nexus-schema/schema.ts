@@ -6,8 +6,8 @@ export const schema = makeSchema({
   types,
   plugins: [],
   outputs: {
-    typegen: path.join(process.cwd(), 'generated', 'nexus-typegen.ts'),
-    schema: path.join(process.cwd(), 'generated', 'schema.graphql'),
+    typegen: path.join(process.cwd(), 'src/nexus-schema/generated', 'apiSchemaTypings.ts'),
+    schema: path.join(process.cwd(), 'src/nexus-schema/generated', 'apiSchema.graphql'),
   },
   nonNullDefaults: {
     input: true,
@@ -21,7 +21,7 @@ export const schema = makeSchema({
         alias: 'prisma',
       },
       {
-        source: path.join(process.cwd(), 'graphql', 'context.ts'),
+        source: path.join(process.cwd(), 'src/nexus-schema', 'context.ts'),
         alias: 'Context',
       },
     ],
