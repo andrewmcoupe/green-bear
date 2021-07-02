@@ -9,10 +9,7 @@ export const schema = makeSchema({
     typegen: path.join(process.cwd(), 'src/nexus-schema/generated', 'apiSchemaTypings.ts'),
     schema: path.join(process.cwd(), 'src/nexus-schema/generated', 'apiSchema.graphql'),
   },
-  nonNullDefaults: {
-    input: true,
-    output: true,
-  },
+  shouldGenerateArtifacts: process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test',
   typegenAutoConfig: {
     contextType: 'Context.Context',
     sources: [

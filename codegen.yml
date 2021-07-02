@@ -1,24 +1,19 @@
 overwrite: true
 schema:
   - src/nexus-schema/generated/apiSchema.graphql
-documents: 'src/**/**.graphql'
 generates:
-  ./src/graphql-operations.ts:
-    plugins:
-      - typescript
-      - typescript-operations
-      - typed-document-node
   src/utils/graphql.generated.ts:
+    documents:
+      - 'src/**/**.graphql'
     plugins:
       - typescript
       - typescript-operations
       - typescript-graphql-request
-    config:
   src/graphql/schemaTypes.generated.ts:
     - typescript
   src/graphql:
     documents:
-      - src/**/**.graphql
+      - 'src/**/**.graphql'
     preset: near-operation-file
     presetConfig:
       baseTypesPath: schemaTypes.generated.ts

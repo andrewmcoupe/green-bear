@@ -56,7 +56,7 @@ export type CreateUserMutation = (
   { __typename?: 'Mutation' }
   & { createUser: (
     { __typename?: 'User' }
-    & Pick<User, 'id'>
+    & Pick<User, 'id' | 'name'>
   ) }
 );
 
@@ -65,6 +65,7 @@ export const CreateUserDocument = gql`
     mutation CreateUser($name: String!, $email: String!, $phoneNumber: String) {
   createUser(name: $name, email: $email, phoneNumber: $phoneNumber) {
     id
+    name
   }
 }
     `;

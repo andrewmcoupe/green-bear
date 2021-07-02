@@ -1,8 +1,13 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../../styles/Home.module.css'
+import { withUrqlClient } from 'next-urql'
 
-export default function Home() {
+import styles from '../../styles/Home.module.css'
+import { useCreateUserMutation } from '../graphql/mutations/CreateUser.generated'
+
+function Home() {
+  const [foo, createUser] = useCreateUserMutation()
+
   return (
     <div className={styles.container}>
       <Head>
@@ -61,3 +66,8 @@ export default function Home() {
     </div>
   )
 }
+
+export default withUrqlClient((_ssrExchange, ctx) => ({
+  // ...add your Client options here
+  url: 'http://localhost:3000/api/graphql',
+}))(Home)
