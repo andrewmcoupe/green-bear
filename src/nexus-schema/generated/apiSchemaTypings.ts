@@ -29,7 +29,18 @@ export interface NexusGenScalars {
 
 export interface NexusGenObjects {
   Mutation: {};
+  Player: { // root type
+    email?: string | null; // String
+    id?: string | null; // String
+    name?: string | null; // String
+    phoneNumber?: string | null; // String
+    teamId?: string | null; // String
+  }
   Query: {};
+  Team: { // root type
+    id?: string | null; // String
+    name?: string | null; // String
+  }
   User: { // root type
     email: string; // String!
     id?: string | null; // String
@@ -50,10 +61,26 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   Mutation: { // field return type
+    createPlayer: NexusGenRootTypes['Player'] | null; // Player
+    createTeam: NexusGenRootTypes['Team'] | null; // Team
     createUser: NexusGenRootTypes['User'] | null; // User
   }
+  Player: { // field return type
+    email: string | null; // String
+    id: string | null; // String
+    name: string | null; // String
+    phoneNumber: string | null; // String
+    teamId: string | null; // String
+  }
   Query: { // field return type
+    getPlayer: NexusGenRootTypes['Player'] | null; // Player
+    getTeam: NexusGenRootTypes['Team'] | null; // Team
     user: NexusGenRootTypes['User'] | null; // User
+  }
+  Team: { // field return type
+    id: string | null; // String
+    name: string | null; // String
+    players: Array<NexusGenRootTypes['Player'] | null> | null; // [Player]
   }
   User: { // field return type
     email: string; // String!
@@ -65,10 +92,26 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
+    createPlayer: 'Player'
+    createTeam: 'Team'
     createUser: 'User'
   }
+  Player: { // field return type name
+    email: 'String'
+    id: 'String'
+    name: 'String'
+    phoneNumber: 'String'
+    teamId: 'String'
+  }
   Query: { // field return type name
+    getPlayer: 'Player'
+    getTeam: 'Team'
     user: 'User'
+  }
+  Team: { // field return type name
+    id: 'String'
+    name: 'String'
+    players: 'Player'
   }
   User: { // field return type name
     email: 'String'
@@ -80,15 +123,30 @@ export interface NexusGenFieldTypeNames {
 
 export interface NexusGenArgTypes {
   Mutation: {
-    createUser: { // args
+    createPlayer: { // args
       email?: string | null; // String
       name?: string | null; // String
+      phoneNumber?: string | null; // String
+      teamId?: string | null; // String
+    }
+    createTeam: { // args
+      name: string; // String!
+    }
+    createUser: { // args
+      email: string; // String!
+      name: string; // String!
       phoneNumber?: string | null; // String
     }
   }
   Query: {
+    getPlayer: { // args
+      id: string; // String!
+    }
+    getTeam: { // args
+      id: string; // String!
+    }
     user: { // args
-      id?: string | null; // String
+      id: string; // String!
     }
   }
 }

@@ -1,12 +1,12 @@
 import { queryField, stringArg, nonNull } from '@nexus/schema'
 
-export const getUser = queryField('user', {
-  type: 'User',
+export const getPlayer = queryField('getPlayer', {
+  type: 'Player',
   args: {
     id: nonNull(stringArg()),
   },
   resolve: async (root, args, context) => {
-    return context.prisma.user.findUnique({
+    return context.prisma.player.findUnique({
       where: {
         id: args.id,
       },

@@ -19,4 +19,4 @@ Run `npx prisma generate` to generate the Prisma client which is an auto generat
 
 Run `yarn dev` to spin up the development server at `localhost:3000`.
 
-The GraphQL API is at `localhostL3000/api/graphql`
+The GraphQL API is at `localhost:3000/api/graphql`

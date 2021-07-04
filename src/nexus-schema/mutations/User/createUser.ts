@@ -1,10 +1,10 @@
-import { mutationField, nullable, stringArg } from '@nexus/schema'
+import { mutationField, nonNull, nullable, stringArg } from '@nexus/schema'
 
 export const createUser = mutationField('createUser', {
   type: 'User',
   args: {
-    name: stringArg(),
-    email: stringArg(),
+    name: nonNull(stringArg()),
+    email: nonNull(stringArg()),
     phoneNumber: nullable(stringArg()),
   },
   description: 'Creates a user',

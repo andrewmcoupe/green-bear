@@ -18,25 +18,70 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  /** Creates a player */
+  createPlayer?: Maybe<Player>;
+  /** Creates a team */
+  createTeam?: Maybe<Team>;
   /** Creates a user */
   createUser?: Maybe<User>;
 };
 
 
-export type MutationCreateUserArgs = {
+export type MutationCreatePlayerArgs = {
   email?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   phoneNumber?: Maybe<Scalars['String']>;
+  teamId?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationCreateTeamArgs = {
+  name: Scalars['String'];
+};
+
+
+export type MutationCreateUserArgs = {
+  email: Scalars['String'];
+  name: Scalars['String'];
+  phoneNumber?: Maybe<Scalars['String']>;
+};
+
+export type Player = {
+  __typename?: 'Player';
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  phoneNumber?: Maybe<Scalars['String']>;
+  teamId?: Maybe<Scalars['String']>;
 };
 
 export type Query = {
   __typename?: 'Query';
+  getPlayer?: Maybe<Player>;
+  getTeam?: Maybe<Team>;
   user?: Maybe<User>;
 };
 
 
+export type QueryGetPlayerArgs = {
+  id: Scalars['String'];
+};
+
+
+export type QueryGetTeamArgs = {
+  id: Scalars['String'];
+};
+
+
 export type QueryUserArgs = {
+  id: Scalars['String'];
+};
+
+export type Team = {
+  __typename?: 'Team';
   id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  players?: Maybe<Array<Maybe<Player>>>;
 };
 
 export type User = {

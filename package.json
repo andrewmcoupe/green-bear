@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"next dev\" \"yarn prisma\" \"yarn codegen:watch\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -12,6 +12,7 @@
     "db:down": "docker compose down",
     "prisma:push": "npx prisma db push",
     "prisma:generate": "npx prisma generate",
+    "prisma": "yarn prisma:push && yarn prisma:generate && prisma studio",
     "codegen": "graphql-codegen --config codegen.yml",
     "codegen:watch": "graphql-codegen --watch"
   },
@@ -43,6 +44,7 @@
     "@graphql-typed-document-node/core": "^3.1.0",
     "@types/node": "^15.12.5",
     "@types/react": "^17.0.11",
+    "concurrently": "^6.2.0",
     "eslint": "7.29.0",
     "eslint-config-next": "11.0.1",
     "prettier": "^2.3.2",

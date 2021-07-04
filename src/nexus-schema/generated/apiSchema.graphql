@@ -3,12 +3,34 @@
 
 
 type Mutation {
+  """Creates a player"""
+  createPlayer(email: String, name: String, phoneNumber: String, teamId: String): Player
+
+  """Creates a team"""
+  createTeam(name: String!): Team
+
   """Creates a user"""
-  createUser(email: String, name: String, phoneNumber: String): User
+  createUser(email: String!, name: String!, phoneNumber: String): User
+}
+
+type Player {
+  email: String
+  id: String
+  name: String
+  phoneNumber: String
+  teamId: String
 }
 
 type Query {
-  user(id: String): User
+  getPlayer(id: String!): Player
+  getTeam(id: String!): Team
+  user(id: String!): User
+}
+
+type Team {
+  id: String
+  name: String
+  players: [Player]
 }
 
 type User {
