@@ -3,11 +3,8 @@ import Image from 'next/image'
 import { withUrqlClient } from 'next-urql'
 
 import styles from '../../styles/Home.module.css'
-import { useCreateUserMutation } from '../graphql/mutations/CreateUser.generated'
 
 function Home() {
-  const [foo, createUser] = useCreateUserMutation()
-
   return (
     <div className={styles.container}>
       <Head>

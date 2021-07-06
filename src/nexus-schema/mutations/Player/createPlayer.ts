@@ -6,7 +6,7 @@ export const createPlayer = mutationField('createPlayer', {
     teamId: stringArg(),
     name: stringArg(),
     email: stringArg(),
-    phoneNumber: stringArg(),
+    phoneNumber: nullable(stringArg()),
   },
   description: 'Creates a player',
   resolve: async (root, args, context) => {

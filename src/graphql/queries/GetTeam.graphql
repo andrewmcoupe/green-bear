@@ -1,0 +1,12 @@
+query GetTeam($id: String!) {
+  getTeam(id: $id) {
+    id
+    name
+    players {
+      id
+      name
+      email
+      phoneNumber
+    }
+  }
+}

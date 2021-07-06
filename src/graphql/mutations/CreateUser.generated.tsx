@@ -1,4 +1,4 @@
-import * as Types from '../../generated/types.generated';
+import * as Types from '../schema-types.generated';
 
 import gql from 'graphql-tag';
 import * as Urql from 'urql';
