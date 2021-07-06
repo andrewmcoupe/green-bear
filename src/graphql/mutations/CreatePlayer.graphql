@@ -1,0 +1,6 @@
+mutation CreatePlayer($teamId: String!, $name: String!, $email: String, $phoneNumber: String) {
+  createPlayer(teamId: $teamId, name: $name, email: $email, phoneNumber: $phoneNumber) {
+    id
+    name
+  }
+}
