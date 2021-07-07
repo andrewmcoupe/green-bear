@@ -35,22 +35,6 @@ model Player {
   phoneNumber String?
   team        Team?    @relation(fields: [teamId], references: [id])
   teamId      String?
-  position    Position
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-}
-
-enum Position {
-  GK
-  LB
-  RB
-  CB
-  LM
-  LW
-  RM
-  RW
-  CDM
-  CM
-  CAM
-  ST
 }

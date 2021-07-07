@@ -1,4 +1,4 @@
-import { objectType } from '@nexus/schema'
+import { enumType, objectType } from '@nexus/schema'
 
 export const Player = objectType({
   name: 'Player',

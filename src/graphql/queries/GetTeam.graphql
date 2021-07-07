@@ -6,7 +6,6 @@ query GetTeam($id: String!) {
       id
       name
       email
-      phoneNumber
     }
   }
 }

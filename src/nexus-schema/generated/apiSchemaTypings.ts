@@ -64,6 +64,7 @@ export interface NexusGenFieldTypes {
     createPlayer: NexusGenRootTypes['Player'] | null; // Player
     createTeam: NexusGenRootTypes['Team'] | null; // Team
     createUser: NexusGenRootTypes['User'] | null; // User
+    deletePlayer: NexusGenRootTypes['Player'] | null; // Player
   }
   Player: { // field return type
     email: string | null; // String
@@ -95,6 +96,7 @@ export interface NexusGenFieldTypeNames {
     createPlayer: 'Player'
     createTeam: 'Team'
     createUser: 'User'
+    deletePlayer: 'Player'
   }
   Player: { // field return type name
     email: 'String'
@@ -136,6 +138,9 @@ export interface NexusGenArgTypes {
       email: string; // String!
       name: string; // String!
       phoneNumber?: string | null; // String
+    }
+    deletePlayer: { // args
+      id?: string | null; // String
     }
   }
   Query: {

@@ -11,6 +11,9 @@ type Mutation {
 
   """Creates a user"""
   createUser(email: String!, name: String!, phoneNumber: String): User
+
+  """Deletes a player"""
+  deletePlayer(id: String): Player
 }
 
 type Player {
