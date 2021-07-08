@@ -140,7 +140,7 @@ export interface NexusGenArgTypes {
       phoneNumber?: string | null; // String
     }
     deletePlayer: { // args
-      id?: string | null; // String
+      id: string; // String!
     }
   }
   Query: {

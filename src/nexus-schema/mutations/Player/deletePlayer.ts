@@ -1,9 +1,9 @@
-import { mutationField, stringArg } from '@nexus/schema'
+import { mutationField, stringArg, nonNull } from '@nexus/schema'
 
 export const deletePlayer = mutationField('deletePlayer', {
   type: 'Player',
   args: {
-    id: stringArg(),
+    id: nonNull(stringArg()),
   },
   description: 'Deletes a player',
   resolve: async (root, args, context) => {

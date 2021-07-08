@@ -1,10 +1,10 @@
 import React from 'react'
-import { useMachine } from '@xstate/react'
+import { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 import { useGetTeamQuery } from '../../../graphql/queries/GetTeam.generated'
-import { GetServerSideProps, NextPage } from 'next'
+import { useDeletePlayerMutation } from '../../../graphql/mutations/DeletePlayer.generated'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
@@ -22,6 +22,16 @@ const TeamPage: NextPage<{ teamId: string }> = ({ teamId }) => {
     pause: !teamId, // don't run if there is no teamId
   })
 
+  const [_, deletePlayer] = useDeletePlayerMutation()
+
+  const onDeletePlayer = async (playerId: string) => {
+    const confirmed = window.confirm('Are you sure you want to delete this player?')
+
+    if (confirmed) {
+      const result = await deletePlayer({ id: playerId })
+    }
+  }
+
   const router = useRouter()
 
   const players = result?.data?.getTeam?.players
@@ -33,7 +43,10 @@ const TeamPage: NextPage<{ teamId: string }> = ({ teamId }) => {
         <h2 className="text-2xl">Players</h2>
         <ul>
           {players?.map((player) => (
-            <li key={player?.id}>{player?.name}</li>
+            <li key={player?.id}>
+              <span>{player?.name}</span>
+              <button onClick={() => onDeletePlayer(player?.id!)}>Delete</button>
+            </li>
           ))}
         </ul>
       </div>
