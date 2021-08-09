@@ -3,8 +3,10 @@ import { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
+import Formation from '../../../components/formation/formation'
 import { useGetTeamQuery } from '../../../graphql/queries/GetTeam.generated'
 import { useDeletePlayerMutation } from '../../../graphql/mutations/DeletePlayer.generated'
+import { Player } from '../../../graphql/schema-types.generated'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
@@ -15,6 +17,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 const TeamPage: NextPage<{ teamId: string }> = ({ teamId }) => {
+  const [lineup, setLineup] = React.useState<Player[]>([])
   const [result] = useGetTeamQuery({
     variables: {
       id: teamId ?? '',
@@ -36,6 +39,10 @@ const TeamPage: NextPage<{ teamId: string }> = ({ teamId }) => {
 
   const players = result?.data?.getTeam?.players
 
+  const addToLineup = (player: Player) => {
+    setLineup((prevLineup) => [...prevLineup, player])
+  }
+
   return (
     <div className="space-y-8">
       <h1 className="text-3xl">{result?.data?.getTeam?.name}</h1>
@@ -46,6 +53,7 @@ const TeamPage: NextPage<{ teamId: string }> = ({ teamId }) => {
             <li key={player?.id}>
               <span>{player?.name}</span>
               <button onClick={() => onDeletePlayer(player?.id!)}>Delete</button>
+              <button onClick={() => addToLineup(player!)}>Add to lineup</button>
             </li>
           ))}
         </ul>
@@ -54,6 +62,9 @@ const TeamPage: NextPage<{ teamId: string }> = ({ teamId }) => {
         <Link href={`/team/${result?.data?.getTeam?.id}/edit`} passHref={true}>
           <span className="p-2 text-white bg-gray-500 cursor-pointer">Edit team</span>
         </Link>
+      </div>
+      <div>
+        <Formation players={lineup} />
       </div>
     </div>
   )

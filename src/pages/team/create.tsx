@@ -3,14 +3,12 @@ import { useMachine } from '@xstate/react'
 import { useRouter } from 'next/router'
 import { FormikErrors, useFormik } from 'formik'
 import { withUrqlClient } from 'next-urql'
-import { CreateTeamMachine } from '../../machines/CreateTeam.machine'
 import { useCreateTeamMutation } from '../../graphql/mutations/CreateTeam.generated'
 
 // create team and submit with name only
 // further updates eg adding players are updates from an update team form
 
 const CreateTeamPage = () => {
-  const [state, send] = useMachine(CreateTeamMachine)
   const [_, createTeam] = useCreateTeamMutation()
   const router = useRouter()
 
